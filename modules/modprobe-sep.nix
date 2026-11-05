@@ -619,6 +619,11 @@ in
     # misc char device, which fprintd's sandbox does not allow.
     systemd.services.fprintd = lib.mkIf config.services.fprintd.enable {
       after = [ "apple-sep.service" ];
+      # Stop fprintd before suspend so no capture is in flight when the sensor
+      # loses power (logs: "sensor fell to state 9" right before resume). It is
+      # D-Bus activated, so it restarts on the next auth request.
+      before = [ "sleep.target" ];
+      conflicts = [ "sleep.target" ];
       serviceConfig = {
         ExecStartPre = "${waitSepBio}";
         DeviceAllow = [ "char-misc rw" ];
