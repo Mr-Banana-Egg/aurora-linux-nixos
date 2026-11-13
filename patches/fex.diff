@@ -1,0 +1,9 @@
+diff --git a/FEXCore/Source/Utils/Allocator.cpp b/FEXCore/Source/Utils/Allocator.cpp
+--- a/FEXCore/Source/Utils/Allocator.cpp
++++ b/FEXCore/Source/Utils/Allocator.cpp
+@@ -353,6 +353,7 @@
+ fextl::vector<MemoryRegion> Setup48BitAllocatorIfExists(size_t PageSize) {
++  return {};
+   size_t Bits = FEXCore::Allocator::GetHostVABits();
+   if (Bits < 48) {
+     return {};

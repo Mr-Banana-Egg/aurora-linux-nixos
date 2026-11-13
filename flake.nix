@@ -30,6 +30,7 @@
     let
       auroraPackages = pkgs: {
         m1n1 = pkgs.callPackage ./packages/m1n1.nix { };
+        fex = pkgs.callPackage ./packages/fex.nix { };
         userpages = pkgs.callPackage ./packages/userpages.nix {
           aurora-kernel = inputs.aurora-kernel;
         };
